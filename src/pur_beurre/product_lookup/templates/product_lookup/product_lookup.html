@@ -1,6 +1,25 @@
 {% extends 'product_lookup/base.html' %}
 
 {% block appcontent %}
-    <h1>Product Lookup</h1>
+    <header>
+        <div id="homepage_header" class="d-flex flex-column">
+            <div id="homepage_header_text" class="d-flex flex-column mx-auto mb-3 mt-auto col-8">
+                <h1>Du gras, oui, mais de la qualité !</h1>
+                <h2>
+                    Trouvez un produit de substitution pour ceux
+                    que vous consommez tous les jours
+                </h2>
+            </div>
+            <div id="homepage_header_searchbar" class="d-flex mx-auto mb-auto col-10 col-md-4">
+                <input type="text" class="form-control align-middle" placeholder="Produit" 
+                aria-label="Produit" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">
+                        Chercher
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 {% endblock appcontent %}
 
