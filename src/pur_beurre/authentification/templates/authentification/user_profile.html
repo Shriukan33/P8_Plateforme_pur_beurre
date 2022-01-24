@@ -1,0 +1,17 @@
+{% extends 'product_lookup/base.html' %}
+
+{% block appcontent %}
+
+    <img>
+
+    {% if request.user.username == object.username %}
+        <div class="d-flex col-10 col-lg-6 mx-auto mt-3">
+            <p class="mx-auto">Votre adresse email est : {{ object.email }}</p>
+        </div>
+    {% else %}
+        <div class="d-flex col-10 col-lg-6">
+            <p>Vous n'avez pas la permission de voir ceci.</p>
+        </div>
+    {% endif %}
+
+{% endblock appcontent %}
