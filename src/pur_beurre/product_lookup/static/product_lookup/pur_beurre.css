@@ -1,3 +1,4 @@
+/* ########## GENERAL ########## */
 :root {
     /* Colors */
     --rooibos-chocolat: #c45525;
@@ -12,7 +13,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: "Scope One", sans-serif; /* For titles */
 }
-/* base.html */
+/* ########## TEMPLATES ########## */
+/* product_lookup/base.html */
 #navbar_logo {
     color: black;
     font-size: 1.5em;
@@ -65,7 +67,7 @@ i.fas.fa-sign-out-alt:hover {
 i.fas.fa-search {
     color: black;
 }
-/* product_lookup.html */
+/* product_lookup/product_lookup.html */
 #homepage_header{
     background-image: url('../product_lookup/photo-bg-accueil-min.jpg');
     background-size: cover;
@@ -100,4 +102,32 @@ i.fas.fa-search {
 #presentation img {
     max-width: 300px;
     max-height: 360px;
+}
+/* authentification/user_profile.html */
+#profile_banner {
+    background-image: url('../authentification/ratatouille-12.jpg');
+    background-size: 100% 100%;
+    /* background-repeat: no-repeat;
+    background-position: 100% 65%; */
+    height: 30vh;
+}
+#profile_banner_text h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 900;
+}
+#profile_banner_text h2 {
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+}
+@media screen and (min-width: 992px) {
+    #profile_banner_text h1 {
+        font-size: 4rem;
+        font-weight: 900;
+    }
+    #profile_banner_text h2 {
+        font-size: 3rem;
+        font-weight: 600;
+    }
 }
