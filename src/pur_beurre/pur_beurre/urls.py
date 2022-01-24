@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('product_lookup.urls')),
+    path('accounts/', include('authentification.urls')),
 ]
 
 if settings.ROLE != "production":
