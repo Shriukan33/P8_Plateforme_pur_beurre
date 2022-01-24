@@ -1,3 +1,17 @@
+:root {
+    /* Colors */
+    --rooibos-chocolat: #c45525;
+    --moules-frites: #345a61;
+    --bonbon-rigolo: #86ebe6;
+    --caramel-mou: #de9440;
+    --biscuit-trempe: #e8a75d;
+}
+body {
+    font-family: "Open Sans", sans-serif; /* For text */
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Scope One", sans-serif; /* For titles */
+}
 /* base.html */
 #navbar_logo {
     color: black;
@@ -5,7 +19,7 @@
     font-weight: 600;
 }
 #navbar {
-    background-color: #bbbbbb;
+    background-color: var(--biscuit-trempe);
 }
 #footer-nav a:link, #footer-nav a:visited, #footer-nav a:hover, #footer-nav a:active {
     color: black;
@@ -21,6 +35,36 @@
         transform: translate(5px, 10%);
     }
 }
+button.search-btn {
+    background-color: var(--rooibos-chocolat);
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+    height: 100%;
+    font-weight: 600;
+}
+button.search-btn:hover {
+    background-color: var(--moules-frites);
+    transition: background-color 0.2s ease-in-out;
+}
+/* Font awesome icons */
+i.fas.fa-user-circle {
+    color: black;
+}
+i.fas.fa-user-circle:hover {
+    color: var(--moules-frites);
+    transition: color 0.25s;
+}
+i.fas.fa-sign-out-alt {
+    color: black;
+}
+i.fas.fa-sign-out-alt:hover {
+    color: var(--moules-frites);
+    transition: color 0.25s;
+}
+i.fas.fa-search {
+    color: black;
+}
 /* product_lookup.html */
 #homepage_header{
     background-image: url('../product_lookup/photo-bg-accueil-min.jpg');
@@ -33,11 +77,10 @@
     font-size: 2vw;
     font-weight: 600;
     text-align: center;
-    -webkit-text-stroke: 2px rgb(0, 0, 0);
 }
 #homepage_header_text h1 {
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 900;
 }
 #homepage_header_text h2 {
     font-size: 2rem;
@@ -53,16 +96,6 @@
         font-size: 3rem;
         font-weight: 600;
     }
-}
-#homepage_header_searchbar div.input-group-append button.btn.btn-outline-secondary {
-    background-color: gray;
-    border-color: grey;
-    color: black;
-}
-#homepage_header_searchbar div.input-group-append button.btn.btn-outline-secondary:hover {
-    background-color: black;
-    border-color: black;
-    color: white;
 }
 #presentation img {
     max-width: 300px;

@@ -18,6 +18,8 @@
     <link rel="icon" type="image/png" href="{% static 'product_lookup/logo_pur_beurre-favicon.png' %}" />
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{% static 'product_lookup/pur_beurre.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
 
 {% endblock head %}
 </head>
@@ -26,7 +28,7 @@
 {% block body %}
 
     {% block navbar %}
-    <nav id="navbar" class="d-flex navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="navbar" class="d-flex navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a id="navbar_logo" class="navbar-brand" href="{% url 'product_lookup:product_lookup' %}">
                 <img src="{% static 'product_lookup/logo_pur_beurre.png' %}" alt="logo_pur_beurre" width="30" height="30">
@@ -44,7 +46,7 @@
                             <input type="text" class="form-control align-middle" placeholder="Chercher un aliment..."
                             aria-label="Chercher un aliment..." aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">
+                                <button class="btn search-btn" type="button">
                                     <i class="fas fa-search" alt="Lancer la recherche" title="Lancer la recherche"></i>
                                 </button>
                             </div>
