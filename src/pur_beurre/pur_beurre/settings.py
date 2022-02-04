@@ -89,8 +89,12 @@ WSGI_APPLICATION = 'pur_beurre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'P8_purbeurre',
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('PG_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
