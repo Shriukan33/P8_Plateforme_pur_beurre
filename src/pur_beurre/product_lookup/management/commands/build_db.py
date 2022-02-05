@@ -1,6 +1,6 @@
 import requests
 from django.core.management.base import BaseCommand
-from product_lookup.models import Products
+from product_lookup.models import Products, Category
 
 
 class Command(BaseCommand):
@@ -23,7 +23,7 @@ class Command(BaseCommand):
                "&sort_by=popularity&page_size=500&page=1&"
                "sort_by=unique_scans_n&"
                "fields=product_name,nutriscore_grade,url,categories,"
-               "pnns_groups_1,pnns_groups_2,image_url&"
+               "pnns_groups_1,pnns_groups_2,image_url,image_nutrition_url&"
                "coutries=france&json=true")
 
         response = requests.get(url)
@@ -58,14 +58,25 @@ class Command(BaseCommand):
                 product_url = product['url']
                 product_image = product['image_url']
                 product_nutriscore = product['nutriscore_grade']
-                product_category = product['pnns_groups_1']
+                product_category = product['pnns_groups_2']
+                product_nutrition_url = product.get("image_nutrition_url", '')
+
+                already_exists = Category.objects.filter(
+                    category_name=product_category).exists()
+                if not already_exists:
+                    category = Category(category_name=product_category)
+                    category.save()
+                else:
+                    category = Category.objects.get(
+                        category_name=product_category)
 
                 product_obj = Products(
                     product_name=product_name,
                     product_url=product_url,
                     product_image=product_image,
                     product_nutriscore=product_nutriscore,
-                    product_category=product_category
+                    product_category=category,
+                    nutritional_information=product_nutrition_url
                 )
                 product_obj.save()
             except KeyError as e:
