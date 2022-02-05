@@ -1,0 +1,28 @@
+{% extends 'product_lookup/base.html' %}
+
+{% block appcontent %}
+
+    {% if alternatives %}
+        <h1 class="d-flex justify-content-center mx-auto text-center">{{alternatives|length}} résultat(s) pour : {{product_name}}</h1>
+    {% endif %}
+
+    <section id="results" class="d-flex col-10 col-md-8 flex-wrap justify-content-around mx-auto">
+        {% for product in alternatives %}
+            <div class="d-flex col-10 col-md-4 flex-column mt-3 p-4 position-relative">
+                <div>
+                    <img src="{{product.product_image}}" alt="{{product.product_name}}" class="result-img d-flex m-auto img-fluid">
+                    <div class="nutriscore-badge nutriscore-{{product.product_nutriscore}}">{{product.product_nutriscore}}</div>
+                </div>
+                <h2 class="my-3 py-2 text-center">{{product.product_name}}</h2>
+                <button class="d-flex save-btn">
+                    <span class="mx-auto">
+                        <i class="fa fa-floppy-o" aria-hidden="true">&nbsp;Sauvegarder</i>
+                    </span>
+                </button>
+            </div>
+        {% empty %}
+            <p>Aucun résultat pour "{{product_name}}"</p>
+        {% endfor %}
+    </section>
+
+{% endblock appcontent %}

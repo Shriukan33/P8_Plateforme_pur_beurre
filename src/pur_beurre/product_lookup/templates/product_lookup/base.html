@@ -42,15 +42,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <li class="d-flex nav-item">
-                        <div class="input-group my-auto mx-3 ">
-                            <input type="text" class="form-control align-middle" placeholder="Chercher un aliment..."
-                            aria-label="Chercher un aliment..." aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn search-btn" type="button">
-                                    <i class="fas fa-search" alt="Lancer la recherche" title="Lancer la recherche"></i>
-                                </button>
+                        <form method="POST" action="{% url 'product_lookup:product_lookup'%}"
+                        class="d-flex flex-row">
+                            {% csrf_token %}
+                            <div class="input-group my-auto mx-3 ">
+                                <input type="text" class="form-control align-middle" placeholder="Chercher un aliment..."
+                                aria-label="Chercher un aliment..." aria-describedby="basic-addon2" name="product_name" required>
+                                <div class="input-group-append">
+                                    <button class="btn search-btn" type="submit">
+                                        <i class="fas fa-search" alt="Lancer la recherche" title="Lancer la recherche"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </li>
                     <li class="d-flex nav-item">
                         {% if request.user.is_authenticated %}

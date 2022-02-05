@@ -103,6 +103,59 @@ i.fas.fa-search {
     max-width: 300px;
     max-height: 360px;
 }
+/* product_lookup/product_lookup_results.html */
+.save-btn {
+    background-color: var(--rooibos-chocolat);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    position: absolute;
+    bottom: -5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    text-align: center;
+    margin: 0 auto;
+}
+.save-btn:hover {
+    background-color: var(--moules-frites);
+    transition: background-color 0.2s ease-in-out;
+}
+.nutriscore-badge {
+    background-color: var(--caramel-mou);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    width: 2em;
+}
+.nutriscore-badge.nutriscore-a {
+    background-color: #008f00;
+}
+.nutriscore-badge.nutriscore-b {
+    background-color: #73BF00;
+}
+.nutriscore-badge.nutriscore-c {
+    background-color: #FFCC00;
+}
+.nutriscore-badge.nutriscore-d {
+    background-color: #FF6600;
+}
+.nutriscore-badge.nutriscore-e {
+    background-color: #FF1900;
+}
+
+.result-img {
+    height: 20vh;
+    object-fit: contain;
+}
 /* authentification/user_profile.html */
 #profile_banner {
     background-image: url('../authentification/ratatouille-12.jpg');
