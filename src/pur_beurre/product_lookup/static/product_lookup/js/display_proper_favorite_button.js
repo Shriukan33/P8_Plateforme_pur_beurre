@@ -5,13 +5,11 @@ function toggle_save_button(id) {
 
 // favorites_id_list comes from context
 var favorites = JSON.parse(favorites_id_list.textContent);
-console.log(favorites);
 // Toggles the favorite button to the proper state on page load
 for (let id of favorites) {
     if ($('#product_add_' + id).length) {
         $('#product_add_' + id).toggleClass('d-none');
         $('#product_remove_' + id).toggleClass('d-flex');
-        console.log("Found : " + id);
     }
 }
 

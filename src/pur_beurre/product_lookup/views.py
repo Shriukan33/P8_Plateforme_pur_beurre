@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.base import TemplateView
@@ -79,3 +80,23 @@ def favorite_click(request, *args, **kwargs):
         Favorites.objects.create(user=user, product=product)
 
     return HttpResponse(status=200)
+
+
+class FavoritesView(LoginRequiredMixin, TemplateView):
+
+    template_name = 'product_lookup/favorites.html'
+
+    def get_context_data(self, **kwargs) -> dict:
+
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        # Get the list of products ids that the user has already
+        # added to his favorites
+        user_favorites = Favorites.objects.filter(user=user)
+        context['favorites'] = user_favorites
+
+        context['favorites_id_list'] = \
+            [product.product.id for product in user_favorites]
+
+        return context
