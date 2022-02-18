@@ -14,8 +14,8 @@
             <div id="homepage_header_searchbar" class="d-flex mx-auto mb-auto col-10 col-md-4">
                 <form method="POST" action="{% url 'product_lookup:product_lookup' %}"
                 class="d-flex flex-row mx-auto">
-                    {% csrf_token %} 
-                    <input type="text" class="form-control align-middle" placeholder="Produit" 
+                    {% csrf_token %}
+                    <input type="text" class="form-control align-middle" placeholder="Produit"
                     aria-label="Produit" aria-describedby="basic-addon2" name="product_name" required>
                     <div class="input-group-append">
                         <button class="btn search-btn" type="submit">
@@ -33,7 +33,7 @@
             <hr class="mx-auto" style="width: 10%;">
             <p class="d-flex col-10 col-lg-4 mx-auto ">
                 Colette et Remy sont deux amis qui se sont rencontrés
-                dans un restaurant parisien, alors tous deux cuisiniers. 
+                dans un restaurant parisien, alors tous deux cuisiniers.
                 Passionnés par la cuisine et la nutrition, ils s'associent
                 pour créer un site de recherche de produits de substitution
                 pour aider les personnes à manger plus sainement sans sacrifier

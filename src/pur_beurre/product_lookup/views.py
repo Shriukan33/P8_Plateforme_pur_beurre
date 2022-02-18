@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.base import TemplateView
 
@@ -78,4 +78,4 @@ def favorite_click(request, *args, **kwargs):
         # Add the favorite
         Favorites.objects.create(user=user, product=product)
 
-    return JsonResponse({'is_favorite': not is_favorite})
+    return HttpResponse(status=200)

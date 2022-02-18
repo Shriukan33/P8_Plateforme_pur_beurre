@@ -104,6 +104,24 @@ i.fas.fa-search {
     max-height: 360px;
 }
 /* product_lookup/product_lookup_results.html */
+#search-results-header {
+    background-image: url('../product_lookup/photo-bg-accueil-min.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30vh;
+    background-color: black;
+    opacity: 0.5;
+}
+#search-results-header-text {
+    color: white;
+    font-size: 5vh;
+    font-weight: 600;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 .save-btn {
     background-color: var(--rooibos-chocolat);
     border: none;

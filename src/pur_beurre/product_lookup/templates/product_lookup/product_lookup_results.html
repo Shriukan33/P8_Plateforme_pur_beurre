@@ -4,7 +4,17 @@
 {% block appcontent %}
 
     {% if alternatives %}
-        <h1 class="d-flex justify-content-center mx-auto text-center">{{alternatives|length}} résultat(s) pour : {{product_name}}</h1>
+        <header style="background-color: black;">
+            <div class="container position-relative">
+                <div id="search-results-header" class="d-flex flex-column"
+                style="background-image: url({{searched_product.product_image}})">
+                </div>
+                <h1 id="search-results-header-text" class="d-flex m-auto position-absolute justify-content-center">
+                    {{ searched_product.product_name }}
+                </h1>
+            </div>
+        </header>
+        <h1 class="d-flex justify-content-center mx-auto mt-3 text-center">{{alternatives|length}} résultat(s) pour : {{product_name}}</h1>
     {% endif %}
 
     <section id="results" class="d-flex col-10 col-md-8 flex-wrap justify-content-around mx-auto">
