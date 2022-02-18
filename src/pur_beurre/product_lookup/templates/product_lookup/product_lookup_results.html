@@ -1,4 +1,5 @@
 {% extends 'product_lookup/base.html' %}
+{% load static %}
 
 {% block appcontent %}
 
@@ -14,9 +15,24 @@
                     <div class="nutriscore-badge nutriscore-{{product.product_nutriscore}}">{{product.product_nutriscore}}</div>
                 </div>
                 <h2 class="my-3 py-2 text-center">{{product.product_name}}</h2>
-                <button class="d-flex save-btn">
+                <button id="product_add_{{ product.id }}" class="d-flex save-btn" name="save_button">
                     <span class="mx-auto">
+                        {% if not user.is_authenticated %}
+                            <a href="{% url 'authentification:login'%}">
+                        {% else %}
+                            {% comment %} <a href="{% url 'product_lookup:save_product' product.id %}"> {% endcomment %}
+                            <a href='#'>
+                        {% endif %}
                         <i class="fa fa-floppy-o" aria-hidden="true">&nbsp;Sauvegarder</i>
+                        </a>
+                    </span>
+                </button>
+                <button id="product_remove_{{ product.id }}" class="save-btn remove" name="remove_button" style="display: none">
+                    <span class="mx-auto">
+                        {% comment %} <a href="{% url 'product_lookup:remove_product' product.id %}"> {% endcomment %}
+                        <a href='#'>
+                            <i class="fa fa-trash-o" aria-hidden="true">&nbsp;Supprimer</i>
+                        </a>
                     </span>
                 </button>
             </div>
@@ -26,3 +42,10 @@
     </section>
 
 {% endblock appcontent %}
+
+{% block javascript %}
+    {{ block.super }}
+    {{ favorites_id_list|json_script:"favorites_id_list" }}
+    <script src="{% static 'product_lookup/js/display_proper_favorite_button.js' %}" defer></script>
+    <script src="{% static 'product_lookup/js/add_to_favorites.js' %}" defer></script>
+{% endblock javascript %}

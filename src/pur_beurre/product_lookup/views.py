@@ -1,8 +1,8 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.views.generic.base import TemplateView
 
-from .models import Products
+from .models import Products, Favorites
 
 
 class ProductLookupView(TemplateView):
@@ -48,4 +48,34 @@ class ProductLookupResultsView(TemplateView):
         else:
             context['alternatives'] = None
 
+        # Get the list of products ids that the user has already
+        # added to his favorites
+        if self.request.user.is_authenticated:
+            user_favorites = self.request.user.favorites_set.all()
+            fav_id_list = [favorite.product.id for favorite in user_favorites]
+            context['favorites_id_list'] = fav_id_list
+        else:
+            context['favorites_id_list'] = None
+
         return context
+
+
+def favorite_click(request, *args, **kwargs):
+    """
+    This method is called when the user clicks on the favorite button.
+    """
+    product_id = request.POST.dict()['product_id']
+    product = Products.objects.get(pk=product_id)
+    user = request.user
+
+    is_favorite = Favorites.objects.filter(
+        user=user, product=product).exists()
+    if is_favorite:
+        # Remove the favorite
+        Favorites.objects.filter(
+            user=user, product=product).delete()
+    else:
+        # Add the favorite
+        Favorites.objects.create(user=user, product=product)
+
+    return JsonResponse({'is_favorite': not is_favorite})

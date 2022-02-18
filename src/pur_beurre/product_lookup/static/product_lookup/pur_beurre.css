@@ -118,6 +118,10 @@ i.fas.fa-search {
     text-align: center;
     margin: 0 auto;
 }
+.save-btn a {
+    color: inherit;
+    text-decoration: none;
+}
 .save-btn:hover {
     background-color: var(--moules-frites);
     transition: background-color 0.2s ease-in-out;
