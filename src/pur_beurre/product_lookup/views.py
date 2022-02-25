@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 
 from .models import Products, Favorites
 
@@ -100,3 +101,8 @@ class FavoritesView(LoginRequiredMixin, TemplateView):
             [product.product.id for product in user_favorites]
 
         return context
+
+
+class ProductDetails(DetailView):
+    model = Products
+    template_name = 'product_lookup/product_details.html'
