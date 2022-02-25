@@ -173,6 +173,26 @@ i.fas.fa-search {
 .nutriscore-badge.nutriscore-e {
     background-color: #FF1900;
 }
+.nutri-a {
+    background-image: url('../product_lookup/nutri-a.png');
+
+}
+.nutri-b {
+    background-image: url('../product_lookup/nutri-b.png');
+    background-size: contain;
+}
+.nutri-c {
+    background-image: url('../product_lookup/nutri-c.png');
+    background-size: contain;
+}
+.nutri-d {
+    background-image: url('../product_lookup/nutri-d.png');
+    background-size: contain;
+}
+.nutri-e {
+    background-image: url('../product_lookup/nutri-e.png');
+    background-size: contain;
+}
 
 .result-img {
     height: 20vh;

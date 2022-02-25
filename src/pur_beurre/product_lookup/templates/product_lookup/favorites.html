@@ -7,12 +7,17 @@
     {% for product in favorites %}
         <div class="d-flex col-10 col-md-4 flex-column mt-3 p-4 position-relative">
             <div>
-                <a href="{% url 'product_lookup:product_lookup_results' product.product.product_name %}">
+                <a href="{% url 'product_lookup:product_lookup_results' product.product.product_name %}" >
                 <img src="{{product.product.product_image}}" alt="{{product.product.product_name}}" class="result-img d-flex m-auto img-fluid">
                 <div class="nutriscore-badge nutriscore-{{product.product.product_nutriscore}}">{{product.product.product_nutriscore}}</div>
                 </a>
             </div>
-            <h2 class="my-3 py-2 text-center">{{product.product.product_name}}</h2>
+            <h2 class="my-3 py-2 text-center">
+                <a href="{% url 'product_lookup:product_details' product.product.id %}"
+                style="text-decoration:none;color:inherit;"> 
+                    {{product.product.product_name}}
+                </a>
+            </h2>
             <button id="product_add_{{ product.product.id }}" class="d-flex save-btn" name="save_button">
                 <span class="mx-auto">
                     {% if not user.is_authenticated %}
