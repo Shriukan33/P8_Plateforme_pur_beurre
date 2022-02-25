@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 
 from dotenv import load_dotenv
+import django_heroku
+
 
 load_dotenv()
 
@@ -31,10 +33,15 @@ SECRET_KEY = os.environ.get('DJANGO_P8_SECRETKEY')
 ROLE = os.environ.get('DJANGO_P8_ROLE')
 if ROLE == "prod":
     DEBUG = False
+    SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    CSRF_COOKIE_SECURE = True
 elif ROLE == "dev":
     DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', "0.0.0.0"]
+ALLOWED_HOSTS = [
+    'p8-plateforme-purbeurre.herokuapp.com',
+    'localhost', '127.0.0.1', '[::1]', "0.0.0.0"]
 
 
 # Application definition
@@ -55,6 +62,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,16 +95,28 @@ WSGI_APPLICATION = 'pur_beurre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'P8_purbeurre',
-        'USER': 'postgres',
-        'PASSWORD': os.environ.get('PG_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+if ROLE == "dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'P8_purbeurre',
+            'USER': 'postgres',
+            'PASSWORD': os.environ.get('PG_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
-}
+elif ROLE == "prod":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'P8_purbeurre',
+            'USER': 'postgres',
+            'PASSWORD': os.environ.get('PG_PASSWORD'),
+            'HOST': os.environ.get('DATABASE_URL'),
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
@@ -147,3 +167,6 @@ MEDIA_ROOT = \
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
