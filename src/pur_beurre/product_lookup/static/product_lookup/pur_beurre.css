@@ -81,11 +81,11 @@ i.fas.fa-search {
     text-align: center;
 }
 #homepage_header_text h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 900;
 }
 #homepage_header_text h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 @media screen and (min-width: 992px) {
