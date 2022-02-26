@@ -81,8 +81,6 @@ class Command(BaseCommand):
                 product_obj.save()
             except KeyError as e:
                 error_list.append(
-                    "- {} is missing : {} - Dropped the item".format(
-                        product["product_name"], e))
-                continue
+                    "- Field is missing : {} - Dropped the item".format(e))
         print("\n".join(error_list))
         print(len(products)-len(error_list), "products saved.")
