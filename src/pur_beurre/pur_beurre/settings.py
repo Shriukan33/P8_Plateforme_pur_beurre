@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 
 from dotenv import load_dotenv
-import django_heroku
 
 
 load_dotenv()
@@ -31,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_P8_SECRETKEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ROLE = os.environ.get('DJANGO_P8_ROLE')
-if ROLE == "prod":
+if ROLE == "production":
     DEBUG = False
     SESSION_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
@@ -39,9 +38,9 @@ if ROLE == "prod":
 elif ROLE == "dev":
     DEBUG = True
 
-ALLOWED_HOSTS = [
-    'p8-plateforme-purbeurre.herokuapp.com',
-    'localhost', '127.0.0.1', '[::1]', "0.0.0.0"]
+ALLOWED_HOSTS = ['benja.fr', '194.195.240.175',
+                 'p8-plateforme-purbeurre.herokuapp.com',
+                 'localhost', '127.0.0.1', '[::1]', "0.0.0.0"]
 
 
 # Application definition
@@ -107,14 +106,14 @@ if ROLE == "dev":
             'PORT': '5432',
         }
     }
-elif ROLE == "prod":
+elif ROLE == "production":
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'P8_purbeurre',
-            'USER': 'postgres',
+            'USER': os.environ.get('PG_PROD_USER'),
             'PASSWORD': os.environ.get('PG_PASSWORD'),
-            'HOST': os.environ.get('DATABASE_URL'),
+            'HOST': 'localhost',
             'PORT': '5432',
         }
     }
@@ -157,7 +156,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = os.environ.get('STATIC_URL')
-STATIC_ROOT = os.environ.get('STATIC_ROOT')
+STATIC_ROOT = BASE_DIR / "staticfiles"
 # Prefix for uploaded files. Must be different from static_url
 MEDIA_URL = os.environ.get('MEDIA_URL')
 # Directory where uploaded files are stored
@@ -168,6 +167,3 @@ MEDIA_ROOT = \
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
