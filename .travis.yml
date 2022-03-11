@@ -4,9 +4,12 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-# command to run tests
-script:
-  - ls
-  - python3 src/pur_beurre/manage.py test
+# For selenium to run
 addons:
   chrome: stable
+services:
+  - postgresql
+# command to run tests
+script:
+  - cd src/pur_beurre
+  - python3 manage.py test
