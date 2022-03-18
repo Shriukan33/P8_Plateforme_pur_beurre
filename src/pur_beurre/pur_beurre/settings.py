@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'product_lookup',
     'authentification',
     'crispy_forms',
+    'legal_mentions',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
