@@ -70,15 +70,37 @@ class Command(BaseCommand):
                     category = Category.objects.get(
                         category_name=product_category)
 
-                product_obj = Products(
+                product_updated = Products.objects.filter(
                     product_name=product_name,
                     product_url=product_url,
                     product_image=product_image,
                     product_nutriscore=product_nutriscore,
                     product_category=category,
-                    nutritional_information=product_nutrition_url
-                )
-                product_obj.save()
+                    product_nutrition_url=product_nutrition_url)
+                if not product_updated:
+                    product_already_exist = Products.objects.filter(
+                        product_url=product_url)
+                    if not product_already_exist:
+                        product_obj = Products(
+                            product_name=product_name,
+                            product_url=product_url,
+                            product_image=product_image,
+                            product_nutriscore=product_nutriscore,
+                            product_category=category,
+                            nutritional_information=product_nutrition_url
+                        )
+                        product_obj.save()
+                    else:
+                        product_obj: Products
+                        product_obj = Products.objects.get(
+                            product_url=product_url)
+                        product_obj.product_name = product_name
+                        product_obj.product_image = product_image
+                        product_obj.product_nutriscore = product_nutriscore
+                        product_obj.product_category = category
+                        product_obj.nutritional_information = \
+                            product_nutrition_url
+                        product_obj.save()
             except KeyError as e:
                 error_list.append(
                     "- Field is missing : {} - Dropped the item".format(e))
