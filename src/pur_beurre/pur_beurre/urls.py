@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('product_lookup.urls')),
     path('accounts/', include('authentification.urls')),
+    path('mentions-legales/', include('legal_mentions.urls')),
 ]
 
 if settings.ROLE != "production":
